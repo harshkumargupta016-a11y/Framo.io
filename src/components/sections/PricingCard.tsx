@@ -1,6 +1,8 @@
+"use client";
+
 /**
  * PRICING CARD COMPONENT
- * What this file does: Renders an individual pricing tier card with price, features list, and CTA button.
+ * What this file does: Renders an individual pricing tier card with 3D tilt, popular tier glow, and CTA button.
  * What to edit: Card styling, checkmark icons, or tier layout here; data comes from /src/content/pricing.ts.
  */
 
@@ -8,6 +10,7 @@ import { Check } from "lucide-react";
 import { PricingTier } from "@/content/pricing";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { cn } from "@/lib/utils";
 
 interface PricingCardProps {
@@ -19,9 +22,10 @@ export function PricingCard({ tier, isAnnual }: PricingCardProps) {
   const price = isAnnual ? tier.priceAnnual : tier.priceMonthly;
 
   return (
-    <div
+    <TiltCard
+      maxTilt={5}
       className={cn(
-        "relative rounded-2xl border p-6 sm:p-8 flex flex-col justify-between gap-8 transition-all duration-200",
+        "relative rounded-2xl border p-6 sm:p-8 flex flex-col justify-between gap-8 h-full transition-colors",
         tier.popular
           ? "bg-card border-accent/40 shadow-float ring-1 ring-accent/30"
           : "bg-surface/50 border-card-border shadow-card hover:border-border-strong hover:bg-surface-hover/70"
@@ -55,7 +59,7 @@ export function PricingCard({ tier, isAnnual }: PricingCardProps) {
       <Button href={tier.cta.href} variant={tier.cta.variant} size="lg" className="w-full">
         {tier.cta.label}
       </Button>
-    </div>
+    </TiltCard>
   );
 }
 

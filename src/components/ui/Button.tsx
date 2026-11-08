@@ -18,11 +18,11 @@ export interface ButtonProps
 
 const variantStyles: Record<string, string> = {
   primary:
-    "bg-primary text-primary-foreground hover:opacity-95 shadow-subtle active:scale-[0.98]",
+    "bg-primary text-primary-foreground hover:opacity-95 shadow-subtle hover:shadow-float active:scale-[0.98] hover:-translate-y-0.5",
   secondary:
-    "bg-surface text-foreground border border-border hover:bg-surface-hover hover:border-border-strong active:scale-[0.98]",
+    "bg-surface text-foreground border border-border hover:bg-surface-hover hover:border-border-strong active:scale-[0.98] hover:-translate-y-0.5",
   outline:
-    "bg-transparent text-foreground border border-border hover:bg-surface hover:border-border-strong active:scale-[0.98]",
+    "bg-transparent text-foreground border border-border hover:bg-surface hover:border-border-strong active:scale-[0.98] hover:-translate-y-0.5",
   ghost:
     "bg-transparent text-muted-foreground hover:text-foreground hover:bg-surface-hover active:scale-[0.98]",
 };

@@ -2,12 +2,12 @@
 
 /**
  * CANVAS SHOWCASE SECTION
- * What this file does: Interactive viewport preview with spring-animated Desktop/Tablet/Mobile switcher and overflow protection.
+ * What this file does: 3D perspective scroll-unfolding viewport preview with spring-animated device switcher.
  * What to edit: Viewport tabs and meta come from /src/content/showcase.ts; motion springs from /src/config/motion.ts.
  */
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Monitor, Tablet, Smartphone, Maximize2 } from "lucide-react";
 import { showcaseContent, ViewportOption } from "@/content/showcase";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -16,10 +16,20 @@ import { transitions } from "@/config/motion";
 import { cn } from "@/lib/utils";
 
 export function CanvasShowcase() {
-  const [activeViewport, setActiveViewport] = React.useState<ViewportOption>(
-    showcaseContent.viewports[0]
-  );
+  const [activeViewport, setActiveViewport] = React.useState<ViewportOption>(showcaseContent.viewports[0]);
+  const sectionRef = React.useRef<HTMLElement>(null);
   const { header, viewports, canvasMeta } = showcaseContent;
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "center center"],
+  });
+
+  // 3D Perspective scroll unfolding
+  const rawRotateX = useTransform(scrollYProgress, [0, 1], [16, 0]);
+  const rawScale = useTransform(scrollYProgress, [0, 1], [0.92, 1]);
+  const rotateX = useSpring(rawRotateX, { stiffness: 200, damping: 25 });
+  const scale = useSpring(rawScale, { stiffness: 200, damping: 25 });
 
   const icons = {
     desktop: <Monitor className="w-3.5 h-3.5" />,
@@ -28,7 +38,7 @@ export function CanvasShowcase() {
   };
 
   return (
-    <section id="showcase" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-canvas mx-auto flex flex-col items-center gap-10">
+    <section ref={sectionRef} id="showcase" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-canvas mx-auto flex flex-col items-center gap-10">
       <SectionHeading badge={header.badge} title={header.title} description={header.description} />
 
       {/* Viewport Control Bar */}
@@ -54,12 +64,13 @@ export function CanvasShowcase() {
         })}
       </div>
 
-      {/* Outer Canvas Frame Container with Overflow Protection */}
-      <div className="w-full flex justify-center overflow-x-auto pb-4">
+      {/* Outer Canvas Frame Container with 3D Perspective Scroll Reveal */}
+      <div style={{ perspective: 1400 }} className="w-full flex justify-center overflow-x-auto pb-4">
         <motion.div
+          style={{ rotateX, scale, transformStyle: "preserve-3d" }}
           animate={{ width: activeViewport.width }}
           transition={transitions.springSmooth}
-          className="relative rounded-2xl border border-card-border bg-card shadow-card overflow-hidden max-w-full min-w-[320px]"
+          className="relative rounded-2xl border border-card-border bg-card shadow-2xl overflow-hidden max-w-full min-w-[320px]"
         >
           {/* Top Frame Toolbar */}
           <div className="flex items-center justify-between px-4 py-2.5 bg-surface/80 border-b border-border text-xs text-muted-foreground">
@@ -76,7 +87,6 @@ export function CanvasShowcase() {
             </div>
           </div>
 
-          {/* Inner Website Preview */}
           <CanvasPreview />
         </motion.div>
       </div>

@@ -1,12 +1,15 @@
+"use client";
+
 /**
  * METRICS SECTION
- * What this file does: Renders performance statistics and Lighthouse benchmark cards.
+ * What this file does: Renders performance statistics with 3D tilt cards and Lighthouse benchmark metrics.
  * What to edit: Metric copy and numerals come from /src/content/metrics.ts; styling uses /src/styles/tokens.css.
  */
 
 import { metricsContent } from "@/content/metrics";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 export function MetricsSection() {
   const { header, metrics } = metricsContent;
@@ -17,9 +20,10 @@ export function MetricsSection() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {metrics.map((metric) => (
-          <div
+          <TiltCard
             key={metric.id}
-            className="rounded-2xl border border-card-border bg-gradient-to-b from-card to-surface/40 p-6 flex flex-col justify-between gap-6 shadow-card hover:border-border-strong transition-all duration-200"
+            maxTilt={6}
+            className="rounded-2xl border border-card-border bg-gradient-to-b from-card to-surface/40 p-6 flex flex-col justify-between gap-6 shadow-card hover:border-border-strong h-full transition-colors"
           >
             <div className="space-y-2">
               <div className="flex items-center justify-between">
@@ -48,7 +52,7 @@ export function MetricsSection() {
             <p className="text-xs text-muted-foreground leading-relaxed pt-3 border-t border-border/50">
               {metric.description}
             </p>
-          </div>
+          </TiltCard>
         ))}
       </div>
     </section>

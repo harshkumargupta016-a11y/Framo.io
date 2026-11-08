@@ -1,12 +1,15 @@
+"use client";
+
 /**
  * CALL TO ACTION SECTION
- * What this file does: Renders the final high-impact conversion banner with ambient glow and action buttons.
+ * What this file does: High-impact conversion banner with 3D tilt, ambient atmospheric glow, and action buttons.
  * What to edit: Content is imported from /src/content/cta.ts; styling uses /src/styles/tokens.css.
  */
 
 import { ctaContent } from "@/content/cta";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { AtmosphericGlow } from "@/components/ui/AtmosphericGlow";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -15,8 +18,10 @@ export function CtaSection() {
 
   return (
     <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-content mx-auto">
-      <div className="relative overflow-hidden rounded-3xl border border-card-border bg-gradient-to-b from-card via-surface/60 to-card p-8 sm:p-14 lg:p-16 text-center shadow-float">
-        {/* Raycast-style background glow */}
+      <TiltCard
+        maxTilt={3}
+        className="relative overflow-hidden rounded-3xl border border-card-border bg-gradient-to-b from-card via-surface/60 to-card p-8 sm:p-14 lg:p-16 text-center shadow-float"
+      >
         <AtmosphericGlow />
 
         <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center gap-6">
@@ -26,9 +31,7 @@ export function CtaSection() {
             {title}
           </h2>
 
-          <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">
-            {subtitle}
-          </p>
+          <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">{subtitle}</p>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
             <Button href={actions.primary.href} variant="primary" size="lg" className="w-full sm:w-auto">
@@ -49,7 +52,7 @@ export function CtaSection() {
             ))}
           </div>
         </div>
-      </div>
+      </TiltCard>
     </section>
   );
 }

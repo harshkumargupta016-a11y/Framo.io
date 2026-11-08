@@ -1,12 +1,14 @@
 /**
  * ROOT LAYOUT
- * What this file does: Configures fonts, metadata, theme provider, and root HTML shell.
+ * What this file does: Configures fonts, metadata, theme provider, scroll progress bar, and fluid custom cursor.
  * What to edit: Update top-level font configuration, favicon, or global providers here.
  */
 
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -44,6 +46,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ScrollProgressBar />
+          <CustomCursor />
           {children}
         </ThemeProvider>
       </body>

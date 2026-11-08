@@ -2,11 +2,12 @@
 
 /**
  * WORKFLOW SECTION
- * What this file does: Interactive 3-step walkthrough showing how users prompt, polish, and publish products.
+ * What this file does: Interactive 3-step walkthrough with animated code snippet transitions and spring tabs.
  * What to edit: Step copy and snippets come from /src/content/workflow.ts; styling uses /src/styles/tokens.css.
  */
 
 import * as React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { workflowContent, WorkflowStep } from "@/content/workflow";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Badge } from "@/components/ui/Badge";
@@ -33,7 +34,7 @@ export function WorkflowSection() {
                 className={cn(
                   "p-5 rounded-2xl text-left transition-all duration-200 border cursor-pointer",
                   isActive
-                    ? "bg-card border-border-strong shadow-card"
+                    ? "bg-card border-border-strong shadow-card scale-[1.01]"
                     : "bg-surface/40 border-border/50 hover:bg-surface-hover hover:border-border"
                 )}
               >
@@ -57,9 +58,18 @@ export function WorkflowSection() {
               <span className="text-[11px] font-mono text-muted-foreground">{activeStep.tagline}</span>
             </div>
 
-            <pre className="font-mono text-xs sm:text-sm text-foreground/90 bg-surface/60 p-4 rounded-xl border border-border/40 overflow-x-auto whitespace-pre-wrap leading-relaxed">
-              {activeStep.snippetContent}
-            </pre>
+            <AnimatePresence mode="wait">
+              <motion.pre
+                key={activeStep.id}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.18 }}
+                className="font-mono text-xs sm:text-sm text-foreground/90 bg-surface/60 p-4 rounded-xl border border-border/40 overflow-x-auto whitespace-pre-wrap leading-relaxed"
+              >
+                {activeStep.snippetContent}
+              </motion.pre>
+            </AnimatePresence>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-border/50">
