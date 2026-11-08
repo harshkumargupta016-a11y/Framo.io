@@ -2,7 +2,7 @@
 
 /**
  * NAV DROPDOWN COMPONENT
- * What this file does: Accessible, click-toggled navigation dropdown that stays open until toggled or dismissed.
+ * What this file does: Accessible, click-toggled navigation dropdown with opaque high-contrast styling and smooth dismiss.
  * What to edit: Adjust dropdown width, item layout, or badge styles here.
  */
 
@@ -55,7 +55,7 @@ export function NavDropdown({ label, items }) {
         <div
           role="menu"
           aria-label={`${label} menu`}
-          className="absolute top-full left-0 mt-3 w-80 rounded-2xl border border-border-strong bg-card p-2.5 shadow-2xl z-50 pointer-events-auto animate-in fade-in zoom-in-95 duration-150"
+          className="absolute top-full left-0 mt-3 w-80 sm:w-96 rounded-2xl border border-black/10 dark:border-white/10 bg-white dark:bg-[#0E1116] p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.18)] dark:shadow-[0_25px_65px_rgba(0,0,0,0.85)] z-50 pointer-events-auto"
         >
           <div className="flex flex-col gap-1">
             {items.map((item) => (
@@ -64,10 +64,10 @@ export function NavDropdown({ label, items }) {
                 href={item.href}
                 role="menuitem"
                 onClick={() => setIsOpen(false)}
-                className="flex flex-col gap-1 p-3 rounded-xl border border-transparent hover:border-border hover:bg-surface transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
+                className="flex flex-col gap-1 p-3 rounded-xl border border-transparent hover:border-black/5 dark:hover:border-white/5 hover:bg-slate-100/80 dark:hover:bg-white/[0.06] transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs sm:text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                  <span className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-zinc-100 group-hover:text-accent transition-colors">
                     {item.title}
                   </span>
                   {item.badge && (
@@ -76,7 +76,7 @@ export function NavDropdown({ label, items }) {
                     </Badge>
                   )}
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                <p className="text-xs text-slate-600 dark:text-zinc-400 leading-relaxed">{item.description}</p>
               </Link>
             ))}
           </div>

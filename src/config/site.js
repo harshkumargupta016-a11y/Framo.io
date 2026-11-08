@@ -110,7 +110,7 @@ export const siteConfig = {
       },
       signup: {
         label: "Sign up",
-        href: "#pricing",
+        href: "#cta",
       },
     },
   },

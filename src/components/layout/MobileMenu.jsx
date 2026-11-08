@@ -38,7 +38,7 @@ export function MobileMenu({ isOpen, onClose, links, actions }) {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile Navigation Menu"
-        className="md:hidden pointer-events-auto fixed inset-x-3 top-18 max-h-[82vh] overflow-y-auto p-5 rounded-2xl bg-card border border-border shadow-float z-50 flex flex-col gap-4 animate-in fade-in slide-in-from-top-4 duration-200"
+        className="md:hidden pointer-events-auto fixed inset-x-3 top-18 max-h-[82vh] overflow-y-auto p-5 rounded-2xl bg-white dark:bg-[#0E1116] border border-black/10 dark:border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_25px_65px_rgba(0,0,0,0.85)] z-50 flex flex-col gap-4 animate-in fade-in slide-in-from-top-4 duration-200"
       >
         <div className="flex flex-col divide-y divide-border/60">
           {links.map((link, idx) => {

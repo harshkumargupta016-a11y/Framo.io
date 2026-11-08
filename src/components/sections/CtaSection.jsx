@@ -17,7 +17,7 @@ export function CtaSection() {
   const { badge, title, subtitle, actions, guarantees } = ctaContent;
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-content mx-auto">
+    <section id="cta" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-content mx-auto scroll-mt-20">
       <TiltCard
         maxTilt={3}
         className="relative overflow-hidden rounded-3xl border border-card-border bg-gradient-to-b from-card via-surface/60 to-card p-8 sm:p-14 lg:p-16 text-center shadow-float"
