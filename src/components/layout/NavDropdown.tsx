@@ -2,8 +2,8 @@
 
 /**
  * NAV DROPDOWN COMPONENT
- * What this file does: Renders an accessible, fully opaque navigation dropdown for clear readability over page content.
- * What to edit: Adjust popover width, padding, or hover styling here.
+ * What this file does: Accessible, click-toggled navigation dropdown that stays open until toggled or dismissed.
+ * What to edit: Adjust dropdown width, item layout, or badge styles here.
  */
 
 import * as React from "react";
@@ -22,21 +22,18 @@ export function NavDropdown({ label, items }: NavDropdownProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
-  // Close when clicking outside or pressing Escape
   React.useEffect(() => {
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIsOpen(false);
-    }
-    function handleClickOutside(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    const handleClickOutside = (e: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
-    }
-
-    if (isOpen) {
-      document.addEventListener("keydown", handleKeyDown);
-      document.addEventListener("mousedown", handleClickOutside);
-    }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("mousedown", handleClickOutside);
@@ -44,12 +41,7 @@ export function NavDropdown({ label, items }: NavDropdownProps) {
   }, [isOpen]);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative"
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-    >
+    <div ref={containerRef} className="relative">
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -58,18 +50,13 @@ export function NavDropdown({ label, items }: NavDropdownProps) {
         className={cn(
           "inline-flex items-center gap-1 text-xs lg:text-sm px-3 py-1.5 rounded-full font-medium transition-colors cursor-pointer",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-1",
-          isOpen
-            ? "text-foreground bg-surface-hover"
-            : "text-muted-foreground hover:text-foreground hover:bg-surface-hover"
+          isOpen ? "text-foreground bg-surface-hover" : "text-muted-foreground hover:text-foreground hover:bg-surface-hover"
         )}
       >
         <span>{label}</span>
-        <ChevronDown
-          className={cn("w-3.5 h-3.5 transition-transform duration-200", isOpen && "rotate-180")}
-        />
+        <ChevronDown className={cn("w-3.5 h-3.5 transition-transform duration-200", isOpen && "rotate-180")} />
       </button>
 
-      {/* Dropdown Menu Container (Solid Opaque Surface with High Elevation) */}
       {isOpen && (
         <div
           role="menu"
@@ -95,9 +82,7 @@ export function NavDropdown({ label, items }: NavDropdownProps) {
                     </Badge>
                   )}
                 </div>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {item.description}
-                </p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
               </Link>
             ))}
           </div>
