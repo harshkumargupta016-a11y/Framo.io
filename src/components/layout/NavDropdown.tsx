@@ -2,8 +2,8 @@
 
 /**
  * NAV DROPDOWN COMPONENT
- * What this file does: Renders an accessible navigation dropdown with keyboard navigation and focus management.
- * What to edit: Adjust popover layout, arrow indicators, or hover delay timing here.
+ * What this file does: Renders an accessible, fully opaque navigation dropdown for clear readability over page content.
+ * What to edit: Adjust popover width, padding, or hover styling here.
  */
 
 import * as React from "react";
@@ -69,38 +69,40 @@ export function NavDropdown({ label, items }: NavDropdownProps) {
         />
       </button>
 
-      {/* Dropdown Menu Container */}
+      {/* Dropdown Menu Container (Solid Opaque Surface with High Elevation) */}
       {isOpen && (
         <div
           role="menu"
-          className="absolute top-full left-0 mt-2 w-72 rounded-2xl border border-border bg-card/95 backdrop-blur-md p-2 shadow-float animate-in fade-in zoom-in-95 duration-150 z-50"
+          aria-label={`${label} menu`}
+          className="absolute top-full left-0 mt-3 w-80 rounded-2xl border border-border-strong bg-card p-2.5 shadow-2xl z-50 pointer-events-auto animate-in fade-in zoom-in-95 duration-150"
         >
-          {items.map((item) => (
-            <Link
-              key={item.title}
-              href={item.href}
-              role="menuitem"
-              onClick={() => setIsOpen(false)}
-              className="flex flex-col gap-0.5 p-2.5 rounded-xl hover:bg-surface-hover transition-colors group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-foreground group-hover:text-foreground">
-                  {item.title}
-                </span>
-                {item.badge && (
-                  <Badge variant="accent" className="text-[10px] py-0 px-1.5">
-                    {item.badge}
-                  </Badge>
-                )}
-              </div>
-              <p className="text-[11px] text-muted-foreground line-clamp-2 leading-relaxed">
-                {item.description}
-              </p>
-            </Link>
-          ))}
+          <div className="flex flex-col gap-1">
+            {items.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                role="menuitem"
+                onClick={() => setIsOpen(false)}
+                className="flex flex-col gap-1 p-3 rounded-xl border border-transparent hover:border-border hover:bg-surface transition-all group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs sm:text-sm font-semibold text-foreground group-hover:text-accent transition-colors">
+                    {item.title}
+                  </span>
+                  {item.badge && (
+                    <Badge variant="accent" className="text-[10px] py-0 px-1.5 font-medium">
+                      {item.badge}
+                    </Badge>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  {item.description}
+                </p>
+              </Link>
+            ))}
+          </div>
         </div>
       )}
     </div>
   );
 }
-
