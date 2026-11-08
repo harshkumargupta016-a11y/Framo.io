@@ -2,7 +2,7 @@
 
 A high-craft frontend assignment recreation synthesizing the visual craft, spatial physics, and ergonomics of **Framer** (visual canvas, live viewport frame previews, builder layout), **Linear** (minimalist precision, monochromatic depth, tight typography), and **Raycast** (dark atmosphere, ambient angled glow streaks, floating capsule navigation).
 
-Built with **Next.js 15 (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **lucide-react**.
+Built with **React & Next.js 15 (App Router)**, **Tailwind CSS**, **Shadcn UI component architecture**, **Lucide icons**, **Recharts**, and **Framer Motion** (pure JavaScript & JSX, zero TypeScript).
 
 ---
 
@@ -44,15 +44,20 @@ c:\Users\harsh\Framo.io/
 ├── dev.bat                       -> One-click development launcher
 ├── run.bat                       -> Interactive menu (dev, build, start)
 ├── DESIGN_SPEC.md                -> Complete design & typography specification
-├── package.json                  -> Next.js 15, Tailwind, framer-motion, lucide-react, next-themes
-├── tailwind.config.ts            -> Semantic utility mappings connected to CSS tokens
-├── tsconfig.json                 -> TypeScript compiler configuration
+├── package.json                  -> Next.js 15, Tailwind, Recharts, Lucide, framer-motion, next-themes
+├── tailwind.config.js            -> Semantic utility mappings connected to CSS tokens
+├── jsconfig.json                 -> Path aliases (@/*)
 │
 └── src/
     ├── app/                      -> Next.js App Router core
-    │   ├── layout.tsx            -> Font loaders (Inter & JetBrains Mono), ThemeProvider, metadata
-    │   ├── page.tsx              -> 11-section ordered landing page assembly
+    │   ├── layout.jsx            -> Font loaders, ThemeProvider, ScrollProgressBar, CustomCursor
+    │   ├── page.jsx              -> 11-section ordered landing page assembly
     │   └── globals.css           -> Global reset, tokens import & prefers-reduced-motion
+    ├── components/
+    │   ├── ui/                   -> Shadcn-style primitives (Button, Badge, Card, TiltCard, PerformanceChart)
+    │   ├── layout/               -> Shell chrome (Navbar, NavDropdown, MobileMenu, ThemeToggle, Footer)
+    │   ├── providers/            -> ThemeProvider (next-themes)
+    │   └── sections/             -> 11 sections (Hero, CanvasShowcase, Bento, Metrics, etc.)
     │
     ├── styles/                   -> Global design tokens
     │   └── tokens.css            -> Complete CSS variables (colors, radii, shadows, spacing)
