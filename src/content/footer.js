@@ -11,11 +11,6 @@ export const footerContent = {
     name: "Framo",
     description: "The pro website and product development canvas designed for high-craft teams and modern AI agents.",
   },
-  status: {
-    indicator: "operational",
-    label: "All systems normal",
-    href: siteConfig.links.status,
-  },
   columns: [
     {
       title: "Product",

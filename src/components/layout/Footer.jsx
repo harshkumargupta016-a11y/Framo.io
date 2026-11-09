@@ -10,7 +10,7 @@ import { siteConfig } from "@/config/site";
 import { Badge } from "@/components/ui/Badge";
 
 export function Footer() {
-  const { brand, status, columns, socials, meta, copyright } = footerContent;
+  const { brand, columns, socials, meta, copyright } = footerContent;
 
   return (
     <footer className="border-t border-border bg-surface/40 text-foreground py-16 px-4 sm:px-6 lg:px-12">
@@ -28,16 +28,6 @@ export function Footer() {
             </Link>
             <p className="text-xs text-muted-foreground leading-relaxed">{brand.description}</p>
           </div>
-
-          <Link
-            href={status.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground font-medium px-3.5 py-2 rounded-full border border-border bg-surface/80 hover:bg-surface-hover transition-colors w-fit focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground min-h-[40px]"
-          >
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>{status.label}</span>
-          </Link>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
