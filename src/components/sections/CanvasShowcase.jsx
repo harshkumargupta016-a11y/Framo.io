@@ -12,6 +12,7 @@ import { Monitor, Tablet, Smartphone, Maximize2 } from "lucide-react";
 import { showcaseContent } from "@/content/showcase";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CanvasPreview } from "@/components/sections/CanvasPreview";
+import { Scroll3DPopup } from "@/components/ui/Scroll3DPopup";
 import { transitions } from "@/config/motion";
 import { cn } from "@/lib/utils";
 
@@ -38,7 +39,9 @@ export function CanvasShowcase() {
 
   return (
     <section ref={sectionRef} id="showcase" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-canvas mx-auto flex flex-col items-center gap-10">
-      <SectionHeading badge={header.badge} title={header.title} description={header.description} />
+      <Scroll3DPopup hoverLift={false}>
+        <SectionHeading badge={header.badge} title={header.title} description={header.description} />
+      </Scroll3DPopup>
 
       <div className="flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-full border border-border bg-surface shadow-subtle overflow-x-auto max-w-full">
         {viewports.map((vp) => {

@@ -1,7 +1,7 @@
 /**
  * GLOBAL STYLES
- * What this file does: Imports Tailwind CSS layers, design tokens, and sets accessibility reset rules.
- * What to edit: Edit tokens in /src/styles/tokens.css; animation curves in /src/config/motion.ts.
+ * What this file does: Imports Tailwind CSS layers, tokens, 3D perspective utilities, and Lenis smooth scroll rules.
+ * What to edit: Edit tokens in /src/styles/tokens.css; animation curves in /src/config/motion.js.
  */
 
 @import "../styles/tokens.css";
@@ -28,6 +28,34 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+}
+
+/* 3D Perspective and spatial utilities */
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .perspective-1500 {
+    perspective: 1500px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 /* Accessibility: Respect system preference for reduced motion */

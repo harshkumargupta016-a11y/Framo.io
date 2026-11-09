@@ -1,11 +1,13 @@
 /**
  * ROOT LAYOUT
- * What this file does: Configures fonts, metadata, theme provider, scroll progress bar, and fluid custom cursor.
+ * What this file does: Configures fonts, metadata, theme provider, 3D WebGL background, and smooth inertia scroll.
  * What to edit: Update top-level font configuration, favicon, or global providers here.
  */
 
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { SmoothScroll } from "@/components/providers/SmoothScroll";
+import { Scene3DBackground } from "@/components/3d/Scene3DBackground";
 import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { siteConfig } from "@/config/site";
@@ -41,9 +43,12 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <ScrollProgressBar />
-          <CustomCursor />
-          {children}
+          <SmoothScroll>
+            <Scene3DBackground />
+            <ScrollProgressBar />
+            <CustomCursor />
+            {children}
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

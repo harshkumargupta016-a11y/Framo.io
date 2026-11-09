@@ -17,43 +17,30 @@ export function CommandMenu({ isOpen, onClose }) {
   const inputRef = React.useRef(null);
 
   React.useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 50);
-    } else {
-      setQuery("");
-    }
+    if (isOpen) setTimeout(() => inputRef.current?.focus(), 50);
+    else setQuery("");
   }, [isOpen]);
 
   React.useEffect(() => {
-    function handleKeyDown(e) {
+    const handleKeyDown = (e) => {
       if (e.key === "Escape") onClose();
-    }
+    };
     if (isOpen) document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
-  const filtered = commandMenuContent.commands.filter((cmd) =>
-    cmd.title.toLowerCase().includes(query.toLowerCase())
-  );
+  const filtered = commandMenuContent.commands.filter((cmd) => cmd.title.toLowerCase().includes(query.toLowerCase()));
 
   const handleSelect = (cmd) => {
-    if (cmd.actionId === "toggle-theme") {
-      setTheme(resolvedTheme === "dark" ? "light" : "dark");
-    } else if (cmd.href) {
-      window.location.hash = cmd.href.replace("#", "");
-    }
+    if (cmd.actionId === "toggle-theme") setTheme(resolvedTheme === "dark" ? "light" : "dark");
+    else if (cmd.href) window.location.hash = cmd.href.replace("#", "");
     onClose();
   };
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label="Command Palette"
-      className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 p-4 bg-background/70 backdrop-blur-md animate-in fade-in duration-150"
-    >
+    <div role="dialog" aria-modal="true" aria-label="Command Palette" className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 p-4 bg-background/70 backdrop-blur-md animate-in fade-in duration-150">
       <div className="w-full max-w-lg rounded-2xl border border-border bg-card shadow-float overflow-hidden flex flex-col">
         <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
           <Search className="w-4 h-4 text-muted-foreground shrink-0" />
@@ -65,21 +52,14 @@ export function CommandMenu({ isOpen, onClose }) {
             placeholder={commandMenuContent.placeholder}
             className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
           />
-          <button
-            type="button"
-            onClick={onClose}
-            className="p-1 rounded-md text-muted-foreground hover:text-foreground cursor-pointer"
-            aria-label="Close command palette"
-          >
+          <button type="button" onClick={onClose} className="p-1 rounded-md text-muted-foreground hover:text-foreground cursor-pointer" aria-label="Close command palette">
             <X className="w-4 h-4" />
           </button>
         </div>
 
         <div className="max-h-72 overflow-y-auto p-2 space-y-1">
           {filtered.length === 0 ? (
-            <p className="p-4 text-xs text-center text-muted-foreground">
-              {commandMenuContent.emptyMessage}
-            </p>
+            <p className="p-4 text-xs text-center text-muted-foreground">{commandMenuContent.emptyMessage}</p>
           ) : (
             filtered.map((cmd) => (
               <button

@@ -9,6 +9,7 @@
 import { testimonialsContent } from "@/content/testimonials";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { Scroll3DPopup } from "@/components/ui/Scroll3DPopup";
 import { CheckCircle2 } from "lucide-react";
 
 export function Testimonials() {
@@ -16,40 +17,43 @@ export function Testimonials() {
 
   return (
     <section id="testimonials" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-content mx-auto space-y-12">
-      <SectionHeading badge={header.badge} title={header.title} description={header.description} />
+      <Scroll3DPopup hoverLift={false}>
+        <SectionHeading badge={header.badge} title={header.title} description={header.description} />
+      </Scroll3DPopup>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {testimonials.map((item) => (
-          <TiltCard
-            key={item.id}
-            maxTilt={6}
-            className="rounded-2xl border border-card-border bg-card p-6 sm:p-7 flex flex-col justify-between gap-6 shadow-card hover:border-border-strong hover:bg-surface-hover/60 transition-colors"
-          >
-            <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed font-normal">
-              &ldquo;{item.quote}&rdquo;
-            </p>
+        {testimonials.map((item, idx) => (
+          <Scroll3DPopup key={item.id} delay={idx * 0.08} className="h-full">
+            <TiltCard
+              maxTilt={6}
+              className="rounded-2xl border border-card-border bg-card p-6 sm:p-7 flex flex-col justify-between gap-6 shadow-card hover:border-border-strong hover:bg-surface-hover/60 transition-colors h-full"
+            >
+              <p className="text-xs sm:text-sm text-foreground/90 leading-relaxed font-normal">
+                &ldquo;{item.quote}&rdquo;
+              </p>
 
-            <div className="pt-4 border-t border-border/50 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-surface border border-border flex items-center justify-center font-semibold text-xs text-foreground">
-                  {item.avatarInitial}
-                </div>
-                <div className="space-y-0.5">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-semibold text-foreground">{item.author}</span>
-                    {item.verified && <CheckCircle2 className="w-3.5 h-3.5 text-accent" />}
+              <div className="pt-4 border-t border-border/50 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-surface border border-border flex items-center justify-center font-semibold text-xs text-foreground">
+                    {item.avatarInitial}
                   </div>
-                  <span className="text-[11px] text-muted-foreground block">
-                    {item.role} • {item.company}
-                  </span>
+                  <div className="space-y-0.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs font-semibold text-foreground">{item.author}</span>
+                      {item.verified && <CheckCircle2 className="w-3.5 h-3.5 text-accent" />}
+                    </div>
+                    <span className="text-[11px] text-muted-foreground block">
+                      {item.role} • {item.company}
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              <span className="text-[11px] font-mono text-muted-foreground opacity-75 hidden sm:inline">
-                {item.handle}
-              </span>
-            </div>
-          </TiltCard>
+                <span className="text-[11px] font-mono text-muted-foreground opacity-75 hidden sm:inline">
+                  {item.handle}
+                </span>
+              </div>
+            </TiltCard>
+          </Scroll3DPopup>
         ))}
       </div>
     </section>

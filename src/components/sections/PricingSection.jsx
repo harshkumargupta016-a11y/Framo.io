@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { pricingContent } from "@/content/pricing";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PricingCard } from "@/components/sections/PricingCard";
+import { Scroll3DPopup } from "@/components/ui/Scroll3DPopup";
 import { Badge } from "@/components/ui/Badge";
 import { transitions } from "@/config/motion";
 import { cn } from "@/lib/utils";
@@ -21,7 +22,9 @@ export function PricingSection() {
 
   return (
     <section id="pricing" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-content mx-auto space-y-12">
-      <SectionHeading badge={header.badge} title={header.title} description={header.description} />
+      <Scroll3DPopup hoverLift={false}>
+        <SectionHeading badge={header.badge} title={header.title} description={header.description} />
+      </Scroll3DPopup>
 
       <div className="flex items-center justify-center gap-3">
         <div className="relative flex items-center p-1 rounded-full border border-border bg-surface shadow-subtle">
@@ -68,8 +71,10 @@ export function PricingSection() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-        {tiers.map((tier) => (
-          <PricingCard key={tier.id} tier={tier} isAnnual={isAnnual} />
+        {tiers.map((tier, idx) => (
+          <Scroll3DPopup key={tier.id} delay={idx * 0.1} className="h-full">
+            <PricingCard tier={tier} isAnnual={isAnnual} />
+          </Scroll3DPopup>
         ))}
       </div>
     </section>

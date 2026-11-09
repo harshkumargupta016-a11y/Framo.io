@@ -57,12 +57,7 @@ export function MobileMenu({ isOpen, onClose, links, actions }) {
                   {isExpanded && (
                     <div className="mt-1 space-y-1 pl-2 border-l-2 border-border/70">
                       {link.dropdown.map((sub) => (
-                        <Link
-                          key={sub.title}
-                          href={sub.href}
-                          onClick={onClose}
-                          className="min-h-[40px] flex items-center justify-between py-1.5 text-xs text-muted-foreground hover:text-foreground"
-                        >
+                        <Link key={sub.title} href={sub.href} onClick={onClose} className="min-h-[40px] flex items-center justify-between py-1.5 text-xs text-muted-foreground hover:text-foreground">
                           <span>{sub.title}</span>
                           {sub.badge && <Badge variant="accent" className="text-[9px] py-0">{sub.badge}</Badge>}
                         </Link>
@@ -73,12 +68,7 @@ export function MobileMenu({ isOpen, onClose, links, actions }) {
               );
             }
             return (
-              <Link
-                key={link.label}
-                href={link.href || "#"}
-                onClick={onClose}
-                className="min-h-[44px] flex items-center justify-between text-sm font-semibold text-foreground hover:text-foreground/80 py-1"
-              >
+              <Link key={link.label} href={link.href || "#"} onClick={onClose} className="min-h-[44px] flex items-center justify-between text-sm font-semibold text-foreground hover:text-foreground/80 py-1">
                 <span>{link.label}</span>
                 <ArrowUpRight className="w-4 h-4 text-muted-foreground" />
               </Link>

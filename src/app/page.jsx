@@ -19,7 +19,7 @@ import { CtaSection } from "@/components/sections/CtaSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
+    <div className="min-h-screen flex flex-col bg-transparent text-foreground relative z-10">
       <Navbar />
 
       <main className="flex-1 pt-20 flex flex-col gap-14 sm:gap-20">
