@@ -4,6 +4,8 @@
  * What to edit: Update questions, answers, or category badges here.
  */
 
+import { performanceStats } from "@/content/metrics";
+
 export const faqContent = {
   header: {
     badge: "Frequently Asked Questions",
@@ -32,14 +34,13 @@ export const faqContent = {
     {
       id: "performance",
       question: "What kind of performance can I expect for published sites?",
-      answer:
-        "Sites deployed with Framo consistently achieve 100/100 Lighthouse scores. Automatic WebP/AVIF image generation, edge routing under 20ms, zero layout shift (CLS: 0), and hardware-accelerated 60 FPS spring physics come standard.",
+      answer: `Sites deployed with Framo are engineered for high-velocity craft, targeting ${performanceStats.lighthouse} Lighthouse performance. Automatic WebP image optimization, edge routing ${performanceStats.latencyMax}, zero layout shift (CLS: ${performanceStats.cls}), and hardware-accelerated ${performanceStats.fpsLabel} spring physics come standard.`,
     },
     {
       id: "hosting",
       question: "Do you support custom domains, SSL, and team permissions?",
       answer:
-        "All paid plans include custom domain support with automated zero-config SSL certificates, Anycast edge routing across 320 locations, SAML SSO, and granular role-based permissions (Editor, Viewer, Admin).",
+        "All paid plans include custom domain support with automated zero-config SSL certificates, Anycast edge routing across global locations, SAML SSO, and granular role-based permissions (Editor, Viewer, Admin).",
     },
   ],
 };

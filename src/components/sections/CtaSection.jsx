@@ -7,15 +7,16 @@
  */
 
 import { ctaContent } from "@/content/cta";
-import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { Scroll3DPopup } from "@/components/ui/Scroll3DPopup";
 import { AtmosphericGlow } from "@/components/ui/AtmosphericGlow";
+import { useModal } from "@/components/providers/ModalProvider";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 export function CtaSection() {
   const { badge, title, subtitle, actions, guarantees } = ctaContent;
+  const { openModal } = useModal();
 
   return (
     <section id="cta" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-content mx-auto scroll-mt-20">
@@ -36,13 +37,21 @@ export function CtaSection() {
             <p className="text-xs sm:text-base text-muted-foreground leading-relaxed">{subtitle}</p>
 
             <div className="pt-2 flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-              <Button href={actions.primary.href} variant="primary" size="lg" className="w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={() => openModal(actions.primary.modalType || "signup")}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
+              >
                 <span>{actions.primary.label}</span>
                 <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
-              <Button href={actions.secondary.href} variant="secondary" size="lg" className="w-full sm:w-auto">
+              </button>
+              <button
+                type="button"
+                onClick={() => openModal(actions.secondary.modalType || "demo")}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-surface text-foreground hover:bg-surface-hover border border-border text-sm font-semibold active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
+              >
                 <span>{actions.secondary.label}</span>
-              </Button>
+              </button>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-4 pt-4 text-xs text-muted-foreground">

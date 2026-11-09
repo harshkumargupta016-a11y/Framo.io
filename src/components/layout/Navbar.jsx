@@ -14,13 +14,14 @@ import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { NavDropdown } from "@/components/layout/NavDropdown";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { CommandMenu } from "@/components/ui/CommandMenu";
-import { Button } from "@/components/ui/Button";
+import { useModal } from "@/components/providers/ModalProvider";
 import { useScrollPosition } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [commandMenuOpen, setCommandMenuOpen] = React.useState(false);
+  const { openModal } = useModal();
   const isScrolled = useScrollPosition() > 20;
   const { links, actions } = siteConfig.navigation;
 
@@ -68,12 +69,20 @@ export function Navbar() {
             <span className="font-mono text-[10px] bg-muted px-1.5 py-0.2 rounded border border-border/50">⌘K</span>
           </button>
           <ThemeToggle />
-          <Link href={actions.login.href} className="hidden sm:inline-flex text-xs lg:text-sm text-muted-foreground hover:text-foreground px-3 py-1.5 font-medium transition-colors hover:bg-surface-hover rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground">
+          <button
+            type="button"
+            onClick={() => openModal("login")}
+            className="hidden sm:inline-flex text-xs lg:text-sm text-muted-foreground hover:text-foreground px-3 py-1.5 font-medium transition-colors hover:bg-surface-hover rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
+          >
             {actions.login.label}
-          </Link>
-          <Button href={actions.signup.href} size="sm" variant="primary" className="rounded-full text-xs font-medium">
+          </button>
+          <button
+            type="button"
+            onClick={() => openModal("signup")}
+            className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold hover:opacity-90 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
+          >
             {actions.signup.label}
-          </Button>
+          </button>
           <button type="button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground rounded-full hover:bg-surface-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer" aria-label={mobileMenuOpen ? "Close menu" : "Open menu"} aria-expanded={mobileMenuOpen}>
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

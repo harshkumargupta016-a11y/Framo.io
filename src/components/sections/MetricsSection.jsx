@@ -17,7 +17,7 @@ export function MetricsSection() {
   const { header, metrics, chartTitle, chartSubtitle } = metricsContent;
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-content mx-auto space-y-12">
+    <section id="metrics" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-content mx-auto space-y-12">
       <Scroll3DPopup hoverLift={false}>
         <SectionHeading badge={header.badge} title={header.title} description={header.description} />
       </Scroll3DPopup>

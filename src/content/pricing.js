@@ -23,6 +23,7 @@ export const pricingContent = {
       priceMonthly: "$0",
       priceAnnual: "$0",
       period: "forever free",
+      isCustom: false,
       features: [
         "Up to 3 active live projects",
         "Full spatial visual canvas editor",
@@ -32,7 +33,7 @@ export const pricingContent = {
       ],
       cta: {
         label: "Get started for free",
-        href: "#pricing",
+        modalType: "signup",
         variant: "secondary",
       },
     },
@@ -45,6 +46,7 @@ export const pricingContent = {
       period: "/ editor / month",
       popular: true,
       badge: "Most Popular",
+      isCustom: false,
       features: [
         "Unlimited live production projects",
         "Autonomous AI design agent access",
@@ -56,7 +58,7 @@ export const pricingContent = {
       ],
       cta: {
         label: "Start 14-day free trial",
-        href: "#pricing",
+        modalType: "trial",
         variant: "primary",
       },
     },
@@ -64,10 +66,11 @@ export const pricingContent = {
       id: "enterprise",
       name: "Enterprise",
       description: "For scaling organizations demanding dedicated agents, SSO, and guaranteed SLAs.",
-      priceMonthly: "$79",
-      priceAnnual: "$64",
-      period: "/ editor / month",
-      badge: "Custom Scale",
+      priceMonthly: "Custom",
+      priceAnnual: "Custom",
+      period: "tailored to your scale",
+      badge: "Enterprise",
+      isCustom: true,
       features: [
         "Everything in Pro without limits",
         "Dedicated fine-tuned AI design models",
@@ -79,7 +82,7 @@ export const pricingContent = {
       ],
       cta: {
         label: "Contact sales",
-        href: "#pricing",
+        modalType: "contact-sales",
         variant: "outline",
       },
     },

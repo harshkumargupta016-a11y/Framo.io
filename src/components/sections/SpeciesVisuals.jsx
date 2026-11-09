@@ -7,6 +7,7 @@
  */
 
 import { motion } from "framer-motion";
+import { performanceStats } from "@/content/metrics";
 
 export function PurposeBuiltVisual() {
   return (
@@ -65,8 +66,8 @@ export function DesignedForSpeedVisual() {
     <div className="relative w-full h-44 flex items-center justify-center overflow-hidden rounded-xl bg-surface/50 border border-border/50 group-hover:border-emerald-500/40 transition-colors">
       <div className="relative w-full px-6 flex flex-col items-center gap-3">
         <div className="flex items-baseline gap-2">
-          <span className="font-mono text-3xl sm:text-4xl font-bold tracking-tight text-foreground">0.4</span>
-          <span className="font-mono text-xs text-emerald-500 font-semibold uppercase tracking-wider">ms latency</span>
+          <span className="font-mono text-3xl sm:text-4xl font-bold tracking-tight text-foreground">{performanceStats.latency}</span>
+          <span className="font-mono text-xs text-emerald-500 font-semibold uppercase tracking-wider">edge routing</span>
         </div>
         <div className="w-full bg-surface border border-border rounded-full h-2 overflow-hidden relative">
           <motion.div
@@ -78,7 +79,7 @@ export function DesignedForSpeedVisual() {
         </div>
         <div className="flex items-center justify-between w-full text-[10px] font-mono text-muted-foreground">
           <span>Spring Physics</span>
-          <span className="text-emerald-500 font-medium">120 FPS Locked</span>
+          <span className="text-emerald-500 font-medium">{performanceStats.fpsLabel}</span>
         </div>
       </div>
     </div>

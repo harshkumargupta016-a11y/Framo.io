@@ -20,17 +20,17 @@ export const heroContent = {
   actions: {
     primary: {
       label: "Get started for free",
-      href: "#signup",
+      modalType: "signup",
       icon: "arrow",
     },
     secondary: {
       label: "Download app",
-      href: "#download",
+      modalType: "download",
       icon: "download",
     },
     tertiary: {
       label: "Get the Framo MCP",
-      href: "#mcp",
+      modalType: "mcp",
       icon: "arrow",
     },
   },

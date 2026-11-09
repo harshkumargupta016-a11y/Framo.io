@@ -4,6 +4,8 @@
  * What to edit: Update viewport modes, mock site copy, or canvas inspector tags here.
  */
 
+import { performanceStats } from "@/content/metrics";
+
 export const showcaseContent = {
   header: {
     badge: "Interactive Canvas",
@@ -28,9 +30,9 @@ export const showcaseContent = {
     body: "Transform ideas into high-performance web products with sub-millisecond layout responsiveness and declarative CSS animations.",
     cta: "View Case Study",
     metrics: [
-      { label: "Rendering Performance", value: "60 FPS" },
-      { label: "Lighthouse Score", value: "100/100" },
-      { label: "Layout Shift (CLS)", value: "0.00" },
+      { label: "Rendering Performance", value: performanceStats.fpsLabel },
+      { label: "Lighthouse Benchmark", value: performanceStats.lighthouseFull },
+      { label: "Layout Shift (CLS)", value: performanceStats.cls },
     ],
   },
 };

@@ -10,16 +10,17 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import { heroContent } from "@/content/hero";
-import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { AtmosphericGlow } from "@/components/ui/AtmosphericGlow";
+import { useModal } from "@/components/providers/ModalProvider";
 import { fadeInUp, staggerContainer } from "@/config/motion";
 
 export function HeroSection() {
   const { badge, headline, subtitle, actions } = heroContent;
+  const { openModal } = useModal();
 
   return (
-    <section className="relative overflow-hidden pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 lg:px-8">
+    <section id="hero" className="relative overflow-hidden pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 lg:px-8">
       <AtmosphericGlow />
 
       <motion.div
@@ -58,23 +59,32 @@ export function HeroSection() {
 
         <motion.div variants={fadeInUp} className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 w-full max-w-2xl px-2">
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-            <Button href={actions.primary.href} variant="primary" size="lg" className="w-full sm:w-auto shadow-float hover:shadow-[0_0_25px_rgba(225,29,72,0.35)] transition-all">
+            <button
+              type="button"
+              onClick={() => openModal(actions.primary.modalType || "signup")}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold shadow-float hover:shadow-[0_0_25px_rgba(225,29,72,0.35)] hover:opacity-95 active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
+            >
               <span>{actions.primary.label}</span>
               <ArrowRight className="w-4 h-4 ml-1" />
-            </Button>
-            <Button href={actions.secondary.href} variant="secondary" size="lg" className="w-full sm:w-auto">
+            </button>
+            <button
+              type="button"
+              onClick={() => openModal(actions.secondary.modalType || "download")}
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-secondary text-secondary-foreground hover:bg-surface-hover border border-border text-sm font-semibold active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer"
+            >
               <span>{actions.secondary.label}</span>
               <Download className="w-4 h-4 ml-1 opacity-80" />
-            </Button>
+            </button>
           </div>
 
-          <Link
-            href={actions.tertiary.href}
-            className="text-xs sm:text-sm text-muted-foreground hover:text-foreground font-medium inline-flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground rounded-sm py-1"
+          <button
+            type="button"
+            onClick={() => openModal(actions.tertiary.modalType || "mcp")}
+            className="text-xs sm:text-sm text-muted-foreground hover:text-foreground font-medium inline-flex items-center gap-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground rounded-sm py-1 cursor-pointer"
           >
             <span>{actions.tertiary.label}</span>
             <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          </button>
         </motion.div>
       </motion.div>
     </section>

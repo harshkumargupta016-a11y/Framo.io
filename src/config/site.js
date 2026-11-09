@@ -1,7 +1,7 @@
 /**
  * SITE CONFIGURATION
- * What this file does: Stores top-level website metadata, branding details, theme labels, and full navigation structure.
- * What to edit: Update site name, monogram, description, URLs, navigation menus, and dropdown items here.
+ * What this file does: Stores top-level website metadata, branding details, theme labels, and external & navigation links.
+ * What to edit: Update site name, external URLs, social channels, and navigation structure here.
  */
 
 export const siteConfig = {
@@ -14,10 +14,12 @@ export const siteConfig = {
   ogImage: "/og.jpg",
   creator: "@framo_hq",
   links: {
+    status: "https://status.framo.io",
     twitter: "https://twitter.com/framo_hq",
     github: "https://github.com/framo-hq",
     discord: "https://discord.gg/framo",
-    documentation: "https://docs.framo.io",
+    documentation: "/coming-soon?feature=Documentation",
+    guides: "/coming-soon?feature=Guides",
   },
   themeToggle: {
     lightLabel: "Switch to light theme",
@@ -32,13 +34,13 @@ export const siteConfig = {
           {
             title: "Canvas Studio",
             description: "Freeform visual design surface with real DOM layout fidelity.",
-            href: "#features",
+            href: "#showcase",
             badge: "New",
           },
           {
             title: "Physics & Motion",
             description: "Fluid spring animations, layout transitions, and scroll effects.",
-            href: "#showcase",
+            href: "#features",
           },
           {
             title: "Design Agent",
@@ -59,7 +61,7 @@ export const siteConfig = {
           {
             title: "For Product Teams",
             description: "Bridge the gap between product design and production code.",
-            href: "#features",
+            href: "#species",
           },
           {
             title: "For Founders",
@@ -79,7 +81,7 @@ export const siteConfig = {
           {
             title: "Documentation",
             description: "Comprehensive guides, API references, and quickstarts.",
-            href: "#features",
+            href: "/coming-soon?feature=Documentation",
           },
           {
             title: "Showcase Gallery",
@@ -89,7 +91,7 @@ export const siteConfig = {
           {
             title: "Changelog",
             description: "See what's new in our weekly product releases.",
-            href: "#workflow",
+            href: "/coming-soon?feature=Changelog",
             badge: "v2.4",
           },
         ],
@@ -106,11 +108,11 @@ export const siteConfig = {
     actions: {
       login: {
         label: "Log in",
-        href: "#pricing",
+        modalType: "login",
       },
       signup: {
         label: "Sign up",
-        href: "#cta",
+        modalType: "signup",
       },
     },
   },

@@ -4,6 +4,8 @@
  * What to edit: Update feature titles, descriptions, badges, and metric pills here.
  */
 
+import { performanceStats } from "@/content/metrics";
+
 export const featuresContent = {
   header: {
     badge: "Engineered for Craft",
@@ -33,7 +35,7 @@ export const featuresContent = {
       colSpan: "col-span-1",
       detail: {
         label: "Frame Rate",
-        value: "60 FPS Locked",
+        value: performanceStats.fpsLabel,
       },
     },
     {
@@ -51,13 +53,13 @@ export const featuresContent = {
     {
       id: "publishing",
       badge: "Global Edge",
-      title: "Instant global deployment with sub-20ms latency",
+      title: `Instant global deployment with ${performanceStats.latencyMax} latency`,
       description:
         "Publish with one click to our globally distributed edge network with built-in asset optimization and real-time CMS sync.",
       colSpan: "col-span-1 md:col-span-2",
       detail: {
         label: "Edge Response",
-        value: "<20ms TTFB Globally",
+        value: `${performanceStats.latency} TTFB Globally`,
       },
     },
   ],

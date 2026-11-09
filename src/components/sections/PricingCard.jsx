@@ -7,12 +7,13 @@
  */
 
 import { Check } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { TiltCard } from "@/components/ui/TiltCard";
+import { useModal } from "@/components/providers/ModalProvider";
 import { cn } from "@/lib/utils";
 
 export function PricingCard({ tier, isAnnual }) {
+  const { openModal } = useModal();
   const price = isAnnual ? tier.priceAnnual : tier.priceMonthly;
 
   return (
@@ -50,9 +51,20 @@ export function PricingCard({ tier, isAnnual }) {
         </ul>
       </div>
 
-      <Button href={tier.cta.href} variant={tier.cta.variant} size="lg" className="w-full">
+      <button
+        type="button"
+        onClick={() => openModal(tier.cta.modalType || "signup")}
+        className={cn(
+          "w-full py-2.5 px-4 rounded-xl text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground cursor-pointer active:scale-[0.98]",
+          tier.cta.variant === "primary"
+            ? "bg-primary text-primary-foreground hover:opacity-90 shadow-float"
+            : tier.cta.variant === "outline"
+            ? "border border-border text-foreground hover:bg-surface-hover"
+            : "bg-surface text-foreground hover:bg-surface-hover border border-border"
+        )}
+      >
         {tier.cta.label}
-      </Button>
+      </button>
     </TiltCard>
   );
 }

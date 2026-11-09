@@ -7,15 +7,16 @@
 export const ctaContent = {
   badge: "Start Building Today",
   title: "Ready to build at the speed of thought?",
-  subtitle: "Join thousands of world-class designers, founders, and engineering teams crafting high-performance digital products on Framo.",
+  subtitle:
+    "Join thousands of world-class designers, founders, and engineering teams crafting high-performance digital products on Framo.",
   actions: {
     primary: {
       label: "Get started for free",
-      href: "#signup",
+      modalType: "signup",
     },
     secondary: {
       label: "Schedule a demo",
-      href: "#demo",
+      modalType: "demo",
     },
   },
   guarantees: [

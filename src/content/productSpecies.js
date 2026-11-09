@@ -4,6 +4,8 @@
  * What to edit: Update headline, subtitle, card pillars, figure captions, or metrics here.
  */
 
+import { performanceStats } from "@/content/metrics";
+
 export const productSpeciesContent = {
   headline: "A new species of product tool.",
   subtitle:
@@ -35,10 +37,9 @@ export const productSpeciesContent = {
       figure: "FIG 0.3",
       figureLabel: "Sub-millisecond Physics",
       title: "Designed for speed",
-      description:
-        "Reduces friction and restores creative momentum to help teams ship with high velocity. Locked 60 FPS spring physics, instant preview, and zero compilation overhead.",
+      description: `Reduces friction and restores creative momentum to help teams ship with high velocity. Locked ${performanceStats.fps} FPS spring physics, instant preview, and zero compilation overhead.`,
       accent: "emerald",
-      metric: "120 FPS Locked",
+      metric: performanceStats.fpsLabel,
     },
   ],
 };

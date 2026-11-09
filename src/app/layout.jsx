@@ -6,6 +6,7 @@
 
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ModalProvider } from "@/components/providers/ModalProvider";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { Scene3DBackground } from "@/components/3d/Scene3DBackground";
 import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
@@ -43,12 +44,14 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <SmoothScroll>
-            <Scene3DBackground />
-            <ScrollProgressBar />
-            <CustomCursor />
-            {children}
-          </SmoothScroll>
+          <ModalProvider>
+            <SmoothScroll>
+              <Scene3DBackground />
+              <ScrollProgressBar />
+              <CustomCursor />
+              {children}
+            </SmoothScroll>
+          </ModalProvider>
         </ThemeProvider>
       </body>
     </html>
