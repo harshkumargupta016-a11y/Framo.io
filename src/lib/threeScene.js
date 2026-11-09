@@ -70,3 +70,4 @@ export function create3DWorld(container, isDark) {
 
   return { scene, camera, renderer, modelGroup, ring1, ring2, particles, disposables: [coreGeo, coreMat, wireGeo, wireMat, ringGeo, ringMat, particleGeo, particleMat] };
 }
+

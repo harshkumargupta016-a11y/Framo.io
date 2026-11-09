@@ -9,6 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { CanvasShowcase } from "@/components/sections/CanvasShowcase";
 import { LogoTicker } from "@/components/sections/LogoTicker";
+import { ProductSpeciesSection } from "@/components/sections/ProductSpeciesSection";
 import { BentoGrid } from "@/components/sections/BentoGrid";
 import { WorkflowSection } from "@/components/sections/WorkflowSection";
 import { MetricsSection } from "@/components/sections/MetricsSection";
@@ -26,6 +27,7 @@ export default function Home() {
         <HeroSection />
         <CanvasShowcase />
         <LogoTicker />
+        <ProductSpeciesSection />
         <BentoGrid />
         <WorkflowSection />
         <MetricsSection />
