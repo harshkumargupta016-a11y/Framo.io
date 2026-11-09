@@ -78,7 +78,7 @@ export function Scene3DBackground() {
     <div
       ref={mountRef}
       aria-hidden="true"
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-80 dark:opacity-75 transition-opacity duration-300"
+      className="fixed inset-0 pointer-events-none -z-10 overflow-hidden opacity-75 dark:opacity-70 transition-opacity duration-300"
     />
   );
 }

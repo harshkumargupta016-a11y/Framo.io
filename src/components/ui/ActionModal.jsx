@@ -43,11 +43,11 @@ export function ActionModal({ isOpen, onClose, modalData }) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-xl animate-fade-in"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-md p-6 sm:p-8 rounded-2xl bg-[var(--card)] border border-[var(--border-strong)] shadow-[var(--shadow-float)] text-[var(--foreground)]"
+        className="relative w-full max-w-md p-6 sm:p-8 rounded-2xl bg-card/95 dark:bg-[#0E1116]/95 backdrop-blur-2xl border border-border-strong shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] text-foreground"
         onClick={(e) => e.stopPropagation()}
       >
         <button
