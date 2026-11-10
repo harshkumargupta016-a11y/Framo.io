@@ -100,7 +100,6 @@ Framo.io/
     │   │   └── CtaSection.jsx      -> Bottom conversion banner
     │   └── ui/
     │       ├── ActionModal.jsx     -> Accessible dialog with focus trap and Esc handling
-    │       ├── Button.jsx          -> Button and link primitive with states
     │       ├── Badge.jsx           -> Status and feature badge pills
     │       ├── TiltCard.jsx        -> Perspective tilt card container
     │       ├── Scroll3DPopup.jsx   -> Scroll-driven 3D entrance animation
